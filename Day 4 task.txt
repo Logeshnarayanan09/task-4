@@ -1,0 +1,35 @@
+Question 1
+
+let obj1 = {name : "person1", age:5};
+let obj2 = {age:5, name : "person1"};
+
+if (JSON.stringify(obj1) === JSON.stringify(obj2)) {
+    console.log("obj1 is equal to obj2");
+} else {
+    console.log("obj1 is not equal to obj2");
+}
+ 
+output:
+
+obj1 is not equal to obj2
+ 
+Question 2
+
+var request = new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    printData(data);
+}
+
+function printData(data) {
+    if(data.length > 0) {
+       for(let i= 0; i < data.length; i++) {
+           const { name = {}, region = '', subregion = '', population = 0 }  = data[i];
+           console.log(name.common, region, subregion, population);
+       }
+    }
+}
